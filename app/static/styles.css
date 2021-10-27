@@ -1,3 +1,8 @@
+html {
+    background-color: antiquewhite;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .image {
     margin: 30px;
 }
