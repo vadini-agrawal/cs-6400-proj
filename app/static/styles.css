@@ -1,0 +1,35 @@
+.image {
+    margin: 30px;
+}
+
+.queryLabel {
+    font-size: 30px;
+}
+
+.sentenceQuery {
+    font-size: 15px;
+    width: 80%;
+    height: 60px;
+    padding: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.sentenceSubmit {
+    width: 300px;
+    height: 80px;
+    font-size: 20px;
+}
+
+div {
+    text-align: center;
+}
+
+.imagesLabel {
+    text-align: center;
+    font-size: 30px;
+}
+
+.imageResults {
+    text-align: center;
+}
