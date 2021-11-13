@@ -1,4 +1,4 @@
-bb_id, x1, y1, x2, y2, class_name
+bb_id,x1,y1,x2,y2,class_name
 0,67,36,531,475,"person"
 1,142,210,562,475,"book"
 2,0,0,592,490,"person"
