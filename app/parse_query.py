@@ -4,14 +4,14 @@ def parse_sentence(inputString):
     object_list = {}
 
     #Read all the action words and store it
-    with open('hico_list_vb.txt') as f:
+    with open('../data/hico_20160224_det/hico_list_vb.txt') as f:
         lines = f.readlines()
     for i in range(2,len(lines)):
         row = lines[i].split()
         action_list[row[1]] = 1
 
     #Read all the objects and store it
-    with open('hico_list_obj.txt') as f:
+    with open('../data/hico_20160224_det/hico_list_obj.txt') as f:
         lines = f.readlines()
     for i in range(2,len(lines)):
         row = lines[i].split()

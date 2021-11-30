@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+data/hico_20160224_det/images/**
+**/.DS_Store
+
