@@ -24,18 +24,19 @@ def sentence_query():
     if request.method == 'POST':
         result = request.form
         result = result['query']
+        print(result)
         actions, objects = parse_sentence(result)
         print(actions,objects)
 
         filenames = []
         for action in actions:
             for object in objects:
-                with sqlite3.connect("database_sample.db") as con:
+                with sqlite3.connect("../db/database.db") as con:
                     cur = con.cursor()
                     cur.execute("select image_path from IMAGE i join IMAGE_OBJECT_DETAILS iod join OBJECT o where i.image_id = iod.img_id and o.bb_id = iod.object_bb and class_name = ? and action = ?",(object, action))
                     rows = cur.fetchall();
                     for url in rows:
-                        filenames.append(url[0])
+                        filenames.append(url[0][3:])
         return render_template("index.html",result=result, filenames=filenames)
 
 @app.route("/image-query", methods=['POST'])

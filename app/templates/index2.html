@@ -27,12 +27,7 @@
   <script>
     var l = filenames.length;
     hgt = String((l / 3) * (362)) + "px";
-    alert(l);
-    if (l==0){
-      document.getElementById("check").style.display = "none";
-    } else {
-      document.getElementById("full-gallery").style.height = hgt;
-    }
+    document.getElementById("full-gallery").style.height = hgt;
   </script>
   <meta name="theme-color" content="#478ac9">
   <meta property="og:title" content="Home">
@@ -43,7 +38,7 @@
   <header class="u-clearfix u-header u-header" id="sec-5673">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h1 class="u-custom-font u-headline u-text u-text-1">
-        <a href="/">Sentence based search</a>
+        <a href="/">Image Search</a>
       </h1>
       <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
         <div class="menu-collapse"
@@ -93,9 +88,9 @@
           <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
       </nav>
-      <form action="http://127.0.0.1:5000/sentence-query" method="POST"
+      <form action="http://127.0.0.1:5000/image-query" method="POST"
         class="u-clearfix u-form-spacing-15 u-inner-form" style="padding: 15px;" source="custom">
-        <input type="text" placeholder="Search" id="email-558c" name="query" value=""
+        <input type="file" placeholder="Search" id="email-558c" name="file" autocomplete="off" required
           class="u-form-group u-form-group-1 u-border-1 u-border-grey-30 u-input u-input-rectangle" style="width:88%;">
         <input
           class="u-form-group u-form-submit u-form-group-2 u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-montserrat u-palette-3-base u-btn-1"
@@ -105,8 +100,7 @@
     </div>
   </header>
   <section class="u-align-center u-clearfix u-section-1" id="carousel_0cff">
-    <div class="u-clearfix u-sheet u-sheet-1" id="check">
-      <h1 class="u-text u-text-1" id="searching">{{result}} </h1>
+    <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1" id="full-gallery" ;>
         <div class="u-gallery-inner u-gallery-inner-1">
           {% for fn in filenames: %}

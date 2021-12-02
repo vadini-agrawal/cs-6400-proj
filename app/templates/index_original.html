@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Image Querying</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+</head>
+    <h1> Image Based Querying </h1>
+    <div class="sentence">
+        <form action = "http://127.0.0.1:5000/sentence-query" method = "POST">
+            <p class="queryLabel"> Sentence Query: </p>
+            <input class="sentenceQuery" type="text" name="query"></input>
+            <p><input class="sentenceSubmit" type = "submit" value = "Submit" /></p>
+        </form>
+    </div>
+    <div class="imageBox">
+        <form action = "http://127.0.0.1:5000/image-query" method = "POST" enctype="multipart/form-data">
+            <p class="queryLabel"> Query by Image: </p>
+            <input type="file" name="file" autocomplete="off" required>
+            <p><input class="sentenceSubmit" type = "submit" value = "Submit" /></p>
+        </form>
+    </div>
+    <h4 class="imagesLabel">Images: </h4>
+    <div class="imageResults">
+        {% for fn in filenames: %}
+            <!-- <img class="image" src="{{url_for('static', filename=fn)}}"/> -->
+            <img class="image" src="/static/{{fn}}"/>
+        {% endfor %} 
+    </div>
+</html>
