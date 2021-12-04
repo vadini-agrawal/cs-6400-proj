@@ -51,7 +51,9 @@ imobfile.write("{},{},{},{}\n".format("human_bb","object_bb","action","img_id"))
 
 bb_id_counter = 0
 
+imgs_list = []
 for anno in tqdm(annots_subset):
+    imgs_list.append(anno["file_name"])
     img_path = os.path.join(imgroot, anno["file_name"])
     img_id = int(img_path.split('_')[-1].split('.')[0])
     im = Image.open(img_path)
@@ -72,3 +74,7 @@ for anno in tqdm(annots_subset):
         human_bb = bb_ids[hoi['subject_id']]
         object_bb = bb_ids[hoi['object_id']]
         imobfile.write("{},{},{},{}\n".format(human_bb, object_bb, action, img_id))
+
+with open("images_list.txt", 'w') as file:
+    for flname in imgs_list:
+        file.write("{}\n".format(flname))
