@@ -132,4 +132,6 @@ data/hico_20160224_det/images/**
 **/.DS_Store
 **/misc.ipynb
 dump_gitignore
+app/static/data/hico_20160224_det/images
+db/dump
 

@@ -25,7 +25,9 @@ def read_image(imgpath):
 
 imglist = list(map(lambda x: os.path.join(dataroot, x), imglist))
 # imglist = glob(dataroot+"/*")
-dump_path = "../dump_gitignore"
+# dump_path = "../dump_gitignore"
+dump_path = "dump/"
+
 if not os.path.exists(dump_path):
     os.makedirs(dump_path)
 

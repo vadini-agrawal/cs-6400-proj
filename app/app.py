@@ -2,7 +2,9 @@ import os
 
 from flask import Flask, render_template, request
 from parse_query import parse_sentence 
+import append_image
 import sqlite3
+import pdb
 
 # Create Flask's `app` object
 app = Flask(
@@ -51,6 +53,7 @@ def image_query():
             filename = file.filename
             file.save(os.path.join('static', filename))
             # use saved image to query here
+            print(file)
             return render_template('index.html', filenames=[filename])
         else:
             return "File uploaded is not a valid image"
