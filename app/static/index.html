@@ -27,12 +27,8 @@
 <script>
   var l = filenames.length;
   hgt = String((l / 3) * (362)) + "px";
-  alert(l);
-  if (l==0){
-    document.getElementById("check").style.display = "none";
-  } else {
+    document.getElementById("carousel_0cff").style.display = "block";
     document.getElementById("full-gallery").style.height = hgt;
-  }
 </script>
   <meta name="theme-color" content="#478ac9">
   <meta property="og:title" content="Home">
@@ -104,8 +100,8 @@
       </form>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-section-1" id="carousel_0cff">
-    <div class="u-clearfix u-sheet u-sheet-1">
+  <section class="u-align-center u-clearfix u-section-1" id="carousel_0cff" style="display: none;">
+    <div class="u-clearfix u-sheet u-sheet-1" id="check">
       <h1 class="u-text u-text-1" id="searching">{{result}} </h1>
       <div class="u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1" id="full-gallery" ;>
         <div class="u-gallery-inner u-gallery-inner-1">
