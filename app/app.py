@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request
 from parse_query import parse_sentence 
 from append_image import get_similar_images
-import append_image
+from get_objects import get_descriptions
 import sqlite3
 import pdb
 
@@ -56,11 +56,10 @@ def image_query():
             file.save(os.path.join('static', filename))
             # use saved image to query here
             filenames = get_similar_images('static/'+filename)
-            print(filenames)
-            return render_template('index2.html', filenames=filenames)
+            description = get_descriptions(filenames[0])
+            return render_template('index2.html', filenames=filenames, description=description)
         else:
             return "File uploaded is not a valid image"
-
 
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
