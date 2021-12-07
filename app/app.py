@@ -64,7 +64,7 @@ def sentence_query():
             for action in actions:
                 with sqlite3.connect("../db/database.db") as con:
                     cur = con.cursor()
-                    cur.execute("select image_path from IMAGE i join IMAGE_OBJECT_DETAILS iod join OBJECT o where i.image_id = iod.img_id and o.bb_id = iod.object_bb and action = ?",(action,))
+                    cur.execute("select image_path from IMAGE i join IMAGE_OBJECT_DETAILS iod join OBJECT o where i.image_id = iod.img_id and o.bb_id = iod.object_bb and action = ? LIMIT 100",(action,))
                     rows = cur.fetchall();
                     for url in rows:
                         if url[0][3:] not in filenames:
@@ -73,7 +73,7 @@ def sentence_query():
             for object in objects:
                 with sqlite3.connect("../db/database.db") as con:
                     cur = con.cursor()
-                    cur.execute("select image_path from IMAGE i join IMAGE_OBJECT_DETAILS iod join OBJECT o where i.image_id = iod.img_id and o.bb_id = iod.object_bb and class_name = ?",(object,))
+                    cur.execute("select image_path from IMAGE i join IMAGE_OBJECT_DETAILS iod join OBJECT o where i.image_id = iod.img_id and o.bb_id = iod.object_bb and class_name = ? LIMIT 100",(object,))
                     rows = cur.fetchall();
                     for url in rows:
                         if url[0][3:] not in filenames:
@@ -81,7 +81,7 @@ def sentence_query():
         if flag == 1:
             random.shuffle(filenames)
         
-        return render_template("index.html",result=result, filenames=filenames)
+        return render_template("index.html",result=result, filenames=filenames[0:100])
 
 @app.route("/image-query", methods=['POST'])
 def image_query():
@@ -100,7 +100,7 @@ def image_query():
             for i in filenames:
                 descriptions.append(get_descriptions(".."+i[6:]))
             l = len(filenames)
-            return render_template('index2.html', filenames=filenames, descriptions=descriptions, l=l)
+            return render_template('index2.html', your_image='static/'+filename, filenames=filenames[0:100], descriptions=descriptions, l=l)
         else:
             return "File uploaded is not a valid image"
 
