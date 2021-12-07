@@ -16,7 +16,7 @@ import pdb
 # conn.close()
 # conn = sqlite3.connect('database_sample.db')
 
-input_root = "csv_10000"
+input_root = "csv_all"
 db_path = "database.db"
 conn = sqlite3.connect(db_path)
 

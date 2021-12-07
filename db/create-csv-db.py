@@ -16,10 +16,10 @@ my_parser.add_argument("-n", "--num-images", type=int, default=10000, help='Numb
 #                         default="../data/hico_20160224_det/coco_categories.pickle", help="Path to coco categories")
 
 
-hico_verbs_list_path = "../data/hico_20160224_det/hico_list_vb.txt"
-tr_anno_fl = "../data/hico_20160224_det/trainval_hico.json"
-imgroot = "../data/hico_20160224_det/images/train2015"
-coco_categories_path = "../data/hico_20160224_det/coco_categories.pickle"
+hico_verbs_list_path = "../app/static/data/hico_20160224_det/hico_list_vb.txt"
+tr_anno_fl = "../app/static/data/hico_20160224_det/trainval_hico.json"
+imgroot = "../app/static/data/hico_20160224_det/images/train2015"
+coco_categories_path = "../app/static/data/hico_20160224_det/coco_categories.pickle"
 
 args = my_parser.parse_args()
 
