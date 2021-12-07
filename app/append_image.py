@@ -59,16 +59,10 @@ def compute_closest(feat_normed, imlist, feat, topk=5):
     return imlist[args]
 
 
-if __name__=="__main__":
-    filename = "static/egypt_kitty_social.jpg"
+def get_similar_images(filename):
     feat_normed, imlist = load_features()
     feat = extract_feature(filename)
-    close_images = compute_closest(feat_normed, imlist, feat, topk=5)
-    for im in close_images:
-        img = cv2.imread(im)
-        # pdb.set_trace()
-        cv2.imshow("fig", img)
-        if cv2.waitKey(0) == 27:
-            break
+    close_images = compute_closest(feat_normed, imlist, feat, topk=10)
+    return close_images
         
 
