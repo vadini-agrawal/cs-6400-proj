@@ -59,6 +59,8 @@ for anno in tqdm(annots_subset):
     im = Image.open(img_path)
     w, h = im.size
     img_path = img_path.replace("../hico_20160224_det/", "")
+    img_path = img_path.replace("../app/static/data", "../data")
+
     bboxes = anno['annotations']
     bb_ids = list(range(bb_id_counter, bb_id_counter+len(bboxes)))
     bb_id_counter += len(bboxes)
