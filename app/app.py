@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, render_template, request
 from parse_query import parse_sentence 
+from append_image import get_similar_images
 import append_image
 import sqlite3
 import pdb
@@ -38,14 +39,15 @@ def sentence_query():
                     cur.execute("select image_path from IMAGE i join IMAGE_OBJECT_DETAILS iod join OBJECT o where i.image_id = iod.img_id and o.bb_id = iod.object_bb and class_name = ? and action = ?",(object, action))
                     rows = cur.fetchall();
                     for url in rows:
-                        filenames.append(url[0][3:])
+                        if url[0][3:] not in filenames:
+                            filenames.append(url[0][3:])
+        
+        
         return render_template("index.html",result=result, filenames=filenames)
 
 @app.route("/image-query", methods=['POST'])
 def image_query():
     if request.method == 'POST':
-        if 'file' not in request.files:
-            return "no files"
         file = request.files['file']
         if file.filename == '':
             return "no file"
@@ -53,8 +55,9 @@ def image_query():
             filename = file.filename
             file.save(os.path.join('static', filename))
             # use saved image to query here
-            print(file)
-            return render_template('index.html', filenames=[filename])
+            filenames = get_similar_images('static/'+filename)
+            print(filenames)
+            return render_template('index2.html', filenames=filenames)
         else:
             return "File uploaded is not a valid image"
 
