@@ -53,6 +53,7 @@ def extract_feature(img):
     return feat
 
 def compute_closest(feat_normed, imlist, feat, topk=5):
+    feat = feat/np.linalg.norm(feat)
     cosine = feat[None,:] @ feat_normed.T
     cosine_dist = 100*(1-cosine.squeeze())
     args = np.argsort(cosine_dist)[1:1+topk]
