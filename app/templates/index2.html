@@ -27,6 +27,7 @@
   <script>
     var l = filenames.length;
     hgt = String((l / 3) * (362)) + "px";
+    document.getElementById("carousel_0cff").style.display = "block";
     document.getElementById("full-gallery").style.height = hgt;
   </script>
   <meta name="theme-color" content="#478ac9">
@@ -88,7 +89,7 @@
           <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
       </nav>
-      <form action="http://127.0.0.1:5000/image-query" method="POST"
+      <form action="http://127.0.0.1:5000/image-query" method="POST" enctype="multipart/form-data"
         class="u-clearfix u-form-spacing-15 u-inner-form" style="padding: 15px;" source="custom">
         <input type="file" placeholder="Search" id="email-558c" name="file" autocomplete="off" required
           class="u-form-group u-form-group-1 u-border-1 u-border-grey-30 u-input u-input-rectangle" style="width:88%;">
@@ -99,14 +100,14 @@
       </form>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-section-1" id="carousel_0cff">
+  <section class="u-align-center u-clearfix u-section-1" id="carousel_0cff" style="display: block;">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1" id="full-gallery" ;>
         <div class="u-gallery-inner u-gallery-inner-1">
           {% for fn in filenames: %}
           <div class="u-effect-fade u-effect-hover-zoom u-gallery-item">
             <div class="u-back-slide" style="height:352px; width:352.66px;">
-              <img class="u-back-image u-expanded" src="/static/{{fn}}">
+              <img class="u-back-image u-expanded" src="{{fn}}">
             </div>
             <div class="u-over-slide u-shading u-over-slide-1">
               <h3 class="u-gallery-heading"></h3>
