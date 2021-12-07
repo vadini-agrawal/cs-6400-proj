@@ -134,4 +134,4 @@ data/hico_20160224_det/images/**
 dump_gitignore
 app/static/data/hico_20160224_det/images
 db/dump
-
+app/features_all_b1.pickle
