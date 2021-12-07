@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request
 from parse_query import parse_sentence 
-from append_image import get_similar_images
+from append_image import get_similar_images, load_features, extract_feature, compute_closest
 from get_objects import get_descriptions
 import sqlite3
 import pdb
@@ -12,6 +12,8 @@ app = Flask(
     __name__,
     template_folder="templates"
 )
+
+feat_normed, imlist = load_features()
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
@@ -72,7 +74,9 @@ def image_query():
             filename = file.filename
             file.save(os.path.join('static', filename))
             # use saved image to query here
-            filenames = get_similar_images('static/'+filename)
+            feat = extract_feature('static/'+filename)
+            filenames = compute_closest(feat_normed, imlist, feat, topk=10)
+            # filenames = get_similar_images('static/'+filename)
             description = get_descriptions(".."+filenames[0][6:])
             print(".."+filenames[0][6:])
             return render_template('index2.html', filenames=filenames, description=description)

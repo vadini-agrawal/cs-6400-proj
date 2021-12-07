@@ -16,7 +16,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 dataroot = "static/data/hico_20160224_det/images/train2015"
 dump_path = "dump"
 
-def load_features(feature_path="features_10k.pickle"):
+def load_features(feature_path="features_all_b1.pickle"):
     features_dict = pickle.load(open(os.path.join(feature_path), 'rb'))
     imlist = []
     feat_size = 1280
