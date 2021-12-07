@@ -27,9 +27,10 @@ def sentence_query():
     if request.method == 'POST':
         result = request.form
         result = result['query']
-        print(result)
+        print("Query : ",result)
         actions, objects = parse_sentence(result)
-        print(actions,objects)
+        print("Actions :", actions)
+        print("Objects : ",objects)
 
         filenames = []
         for action in actions:
@@ -41,6 +42,7 @@ def sentence_query():
                     for url in rows:
                         if url[0][3:] not in filenames:
                             filenames.append(url[0][3:])
+                            
         for action in actions:
             with sqlite3.connect("../db/database.db") as con:
                 cur = con.cursor()
@@ -73,9 +75,11 @@ def image_query():
             file.save(os.path.join('static', filename))
             # use saved image to query here
             filenames = get_similar_images('static/'+filename)
-            description = get_descriptions(".."+filenames[0][6:])
-            print(".."+filenames[0][6:])
-            return render_template('index2.html', filenames=filenames, description=description)
+            l = len(filenames)
+            descriptions = []
+            for i in filenames:
+                descriptions.append(get_descriptions(".."+i[6:]))
+            return render_template('index2.html', filenames=filenames, descriptions=descriptions, l=l)
         else:
             return "File uploaded is not a valid image"
 

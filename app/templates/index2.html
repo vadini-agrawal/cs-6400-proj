@@ -102,18 +102,19 @@
   </header>
   <section class="u-align-center u-clearfix u-section-1" id="carousel_0cff" style="display: block;">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h1 class="u-text u-text-1" id="searching">{{description}} </h1>
+      <!-- <h1 class="u-text u-text-1" id="searching">{{description}} </h1> -->
       <div class="u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1" id="full-gallery" ;>
         <div class="u-gallery-inner u-gallery-inner-1">
-          {% for fn in filenames: %}
+          {% for i in range(0, l): %}
           <div class="u-effect-fade u-effect-hover-zoom u-gallery-item">
             <div class="u-back-slide" style="height:352px; width:352.66px;">
-              <img class="u-back-image u-expanded" src="{{fn}}">
+              <img class="u-back-image u-expanded" src="{{filenames[i]}}">
             </div>
             <div class="u-over-slide u-shading u-over-slide-1">
               <h3 class="u-gallery-heading"></h3>
               <p class="u-gallery-text"></p>
             </div>
+            <h5>{{descriptions[i]}}</h5>
           </div>
           {% endfor %}
         </div>
