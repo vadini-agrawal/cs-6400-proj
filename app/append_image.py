@@ -16,7 +16,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 dataroot = "static/data/hico_20160224_det/images/train2015"
 dump_path = "dump"
 
-def load_features(feature_path="features_10k.pickle"):
+def load_features(feature_path="features_all_b1.pickle"):
     features_dict = pickle.load(open(os.path.join(feature_path), 'rb'))
     imlist = []
     feat_size = 1280
@@ -53,6 +53,7 @@ def extract_feature(img):
     return feat
 
 def compute_closest(feat_normed, imlist, feat, topk=5):
+    feat = feat/np.linalg.norm(feat)
     cosine = feat[None,:] @ feat_normed.T
     cosine_dist = 100*(1-cosine.squeeze())
     args = np.argsort(cosine_dist)[1:1+topk]

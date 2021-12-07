@@ -13,7 +13,7 @@ from torchvision.models.feature_extraction import create_feature_extractor
 from torchvision import datasets, models, transforms
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-dataroot = "../data/hico_20160224_det/images/train2015"
+dataroot = "../app/static/data/hico_20160224_det/images/train2015"
 imglist = open("images_list.txt").read().split('\n')[:-1]
 
 def read_image(imgpath):
@@ -24,7 +24,7 @@ def read_image(imgpath):
 
 
 imglist = list(map(lambda x: os.path.join(dataroot, x), imglist))
-# imglist = glob(dataroot+"/*")
+imglist = glob(dataroot+"/*")
 # dump_path = "../dump_gitignore"
 dump_path = "dump/"
 
@@ -50,4 +50,4 @@ for img in tqdm(imglist):
         feat = features['flatten'].squeeze().detach().cpu().numpy()
         features_dict[img] = feat
 
-pickle.dump(features_dict, open(os.path.join(dump_path, "features.pickle"), 'wb'))
+pickle.dump(features_dict, open(os.path.join(dump_path, "features_all_b1.pickle"), 'wb'))
