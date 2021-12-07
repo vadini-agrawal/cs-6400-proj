@@ -9,4 +9,11 @@ def get_descriptions(path):
         rows = cur.fetchall()
         for row in rows:
             if row[0] != "no_interaction":
-                return "The image has a person "+row[0]+"ing a "+row[1]
+                temp = row[0].split("_")
+                article = "a"
+                if row[1][0] in ['a', 'e', 'i','o', 'u']:
+                    article = "an"
+                if len(temp) == 2:
+                    return "person "+temp[0]+"ing "+temp[1]+" "+article+" "+row[1]
+                else:
+                    return "person "+row[0]+"ing "+article+" "+row[1]
