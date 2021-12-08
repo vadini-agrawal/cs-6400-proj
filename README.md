@@ -3,9 +3,8 @@ Project code for CS 6400
 
 ## Set up steps
 1. Clone repo 
-2. Create virtualenv for the project (to run locally, you will most likely need to use [conda](https://docs.conda.io/en/latest/). Activate the environment. 
-3. Make sure you're running Python3 
-4. The requirements.txt includes the dependencies needed for the project. A command like this should work once you are in your conda environment: "conda install --yes --file requirements.txt"
+2. To run locally, you will most likely need to use [conda](https://docs.conda.io/en/latest/). Install Conda.
+4. The requirements.txt includes the dependencies needed for the project. A command like this should work once you are in your conda environment: "conda create --name <env> --file <this file>". Make sure you are running Python 3. 
 5. Download this file: https://drive.google.com/file/d/1k2bNgPDB5nPFJfyiiPziGx848q_pJuXH/view?usp=sharing and place it under the "Downloads" directory 
 6. Download this folder of images: https://drive.google.com/file/d/1QZcJmGVlF9f4h-XLWe9Gkmnmj2z1gSnk/view?usp=sharing and place the "images" folder inside this directory under the "hico_20160224_det" folder under "app/static/data". The "train2015" images are the ones used in the app. 
 7. "cd app" and run python3 app.py 
