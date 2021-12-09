@@ -51,16 +51,17 @@ def sentence_query():
                     for url in rows:
                         if url[0][3:] not in filenames:
                             filenames.append(url[0][3:])
-    
+        templ = len(filenames)
         if len(filenames)!=0:
             random.shuffle(filenames)
+        
         tokenized = nltk.word_tokenize(result)
         nouns = [word for (word, pos) in nltk.pos_tag(tokenized) if(pos[:2] == 'NN')]
         verbs = [word for (word, pos) in nltk.pos_tag(tokenized) if(pos[:1] == 'V')]
-        flag = 0
-        if len(nouns)!=0 and len(verbs)!=0 and len(filenames)==0:
-            result = "No results found for '" + result +"' Showing related images"
-            flag = 1
+        if 'person' in nouns:
+            nouns.remove('person')
+        if 'people' in nouns:
+            nouns.remove('people')
 
         if len(filenames) == 0:
             for action in actions:
@@ -80,9 +81,15 @@ def sentence_query():
                     for url in rows:
                         if url[0][3:] not in filenames:
                             filenames.append(url[0][3:])
+        flag = 0
+        if len(nouns)!=0 and len(verbs)!=0 and templ==0 and len(filenames)!=0:
+            result = "No results found for '" + result +"' Showing related images"
+            flag = 1
         if flag == 1:
             random.shuffle(filenames)
-        
+            flag = 0
+        if len(filenames) == 0 and flag==0:
+            result = "No results found for '" + result + "'"
         return render_template("index.html",result=result, filenames=filenames[0:100])
 
 @app.route("/image-query", methods=['POST'])

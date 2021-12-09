@@ -33,9 +33,22 @@ def parse_sentence(inputString):
     
     for key,val in action_list.items():
         for form in val:
-            if form in inputString:
-                actions.append(key)
-
+            lv = len(form)
+            #if the verb is present in the middle
+            if " "+form+" " in inputString:
+                if key not in actions:
+                    actions.append(key)
+            #if the verb is present in the start
+            elif form+" " == inputString[0:lv+1]:
+                if key not in actions:
+                    actions.append(key)
+            #if the verb is present in the end
+            elif " "+form == inputString[-(lv+1):]:
+                if key not in actions:
+                    actions.append(key)
+            elif len(words)==1 and form in inputString:
+                if key not in actions:
+                    actions.append(key)
     return actions,objects
 
 # ac,ob = parse_sentence("person riding a horse")
