@@ -36,6 +36,8 @@ def sentence_query():
         result = result['query']
         print("Query :",result)
         actions, objects = parse_sentence(result)
+        if 'person' in objects:
+            objects.remove('person')
         print("Actions :",actions)
         print("Objects :",objects)
 
